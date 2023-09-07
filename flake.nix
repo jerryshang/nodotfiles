@@ -38,8 +38,7 @@
           # Main `nix-darwin` config
           ./my-other-mac/configuration.nix
           # `home-manager` module
-          home-manager.darwinModules.home-manager
-          {
+          home-manager.darwinModules.home-manager {
             nixpkgs = nixpkgsConfig;
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
@@ -55,14 +54,14 @@
         pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         modules = [
           ./home.nix
-	  {
-	    home = {
-	      username = "jerry";
-	      homeDirectory = "/home/jerry";
-	      stateVersion = "23.05";
+          {
+            home = {
+              username = "jerry";
+              homeDirectory = "/home/jerry";
+              stateVersion = "23.05";
               enableNixpkgsReleaseCheck = false;
-	    };
-	  }
+            };
+          }
         ];
       };
     };
