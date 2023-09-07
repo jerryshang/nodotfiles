@@ -17,7 +17,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, darwin, home-manager, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager, flake-utils, ... }@inputs:
   let
     inherit (darwin.lib) darwinSystem;
     inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
@@ -46,6 +46,23 @@
             home-manager.useUserPackages = true;
             home-manager.users.jerry = import ./home.nix;
           }
+        ];
+      };
+    };
+
+    homeConfigurations = {
+      "jerry@server" = home-manager.lib.homeManagerConfiguration rec {
+        pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
+        modules = [
+          ./home.nix
+	  {
+	    home = {
+	      username = "jerry";
+	      homeDirectory = "/home/jerry";
+	      stateVersion = "23.05";
+              enableNixpkgsReleaseCheck = false;
+	    };
+	  }
         ];
       };
     };

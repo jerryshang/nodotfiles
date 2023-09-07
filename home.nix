@@ -4,6 +4,7 @@
   home.stateVersion = "23.05";
 
   home.packages = with pkgs; [
+    # zsh
     # basic
     coreutils
     du-dust
@@ -62,12 +63,14 @@
 
   programs.zsh = {
     enable = true;
+    package = pkgs.zsh;
     # need turn off default prompt
     # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
-    initExtra = "prompt off && autoload -Uz promptinit && promptinit && prompt pure";
+    initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure";
     initExtraFirst = ''
       setopt interactive_comments
       unsetopt nomatch
+      autoload -U compinit && compinit
     '';
     defaultKeymap = "viins";
     syntaxHighlighting = {
