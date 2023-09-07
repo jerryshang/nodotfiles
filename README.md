@@ -23,4 +23,7 @@ rebuild
 
 ```shell
 nix run home-manager -- --flake ~/.config/nix#jerry@server switch
+
+# on my raspberry pi
+nix run home-manager -- --flake ~/.config/nix#jerry@rpi switch
 ```

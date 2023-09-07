@@ -64,6 +64,20 @@
           }
         ];
       };
+      "jerry@rpi" = home-manager.lib.homeManagerConfiguration rec {
+        pkgs = nixpkgs-unstable.legacyPackages.aarch64-linux;
+        modules = [
+          ./home.nix
+          {
+            home = {
+              username = "jerry";
+              homeDirectory = "/home/jerry";
+              stateVersion = "23.05";
+              enableNixpkgsReleaseCheck = false;
+            };
+          }
+        ];
+      };
     };
 
     overlays = {

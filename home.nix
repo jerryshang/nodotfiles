@@ -8,6 +8,7 @@
     # basic
     coreutils
     du-dust
+    tree
     curl
     wget
     openssl
