@@ -26,7 +26,7 @@
     imagemagick
     # dev
     docker
-    git
+    # git
     glab
     gh
     jq
@@ -94,7 +94,10 @@
     shellAliases = {
       ll = "ls -lah";
       # build and switch
-      nix-dre = "darwin-rebuild switch --flake \"$HOME/.config/nix#myOtherMac\"";
+      ns-mac = "darwin-rebuild switch --flake \"$HOME/.config/nix#myOtherMac\"";
+      ns-linux = "nix run home-manager -- --flake ~/.config/nix#jerry@server switch";
+      ns-pi = "nix run home-manager -- --flake ~/.config/nix#jerry@pi switch";
+      how = "echo $(compgen -a) | tr -s '[:blank:]' '\n' | grep -e '^ns-' ";
     };
     shellGlobalAliases = {
       UUID = "$(uuidgen | tr -d \\n)";
@@ -144,16 +147,38 @@
     vimdiffAlias = true;
 
     extraConfig = ''
-    set termguicolors
-    set incsearch ignorecase smartcase hlsearch
-    set list listchars=trail:»,tab:»-
-    set wrap breakindent
-    set number
-    set relativenumber
+        set termguicolors
+        set incsearch ignorecase smartcase hlsearch
+        set list listchars=trail:»,tab:»-
+        set wrap breakindent
+        set number
+        set relativenumber
+
+        " disable mouse select to visual block
+        set mouse-=a
+
+        let mapleader = ","
     '';
     plugins = with pkgs.vimPlugins; [
-      rainbow
-      indent-blankline-nvim
+      {
+        plugin = rainbow;
+        config = "let g:rainbow_active = 1";
+      }
+      {
+        plugin = indent-blankline-nvim;
+        config = ''
+            " indentLine
+            let g:indentLine_setConceal = 0
+        '';
+      }
+      # https://github.com/marko-cerovac/material.nvim/
+      {
+        plugin = material-nvim;
+        config = ''
+            let g:material_style = 'deep ocean'
+            colorscheme material
+        '';
+      }
     ];
   };
 
@@ -163,5 +188,67 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Jerry Shang";
+    userEmail = "jerryshang@gmail.com";
+    aliases = {
+      co = "checkout";
+      cob = "checkout -b";
+      del = "branch -D";
+      br = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
+      undo = "reset HEAD~1 --mixed";
+      save = "!git add -A && git commit -m 'chore: commit save point'";
+      done = "!git push origin HEAD";
+      lg = "!git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30";
+      ver = "!git log --graph --all --oneline --simplify-by-decoration --date=format:%Y-%m-%d\\ %H:%M:%S --pretty=format:\"%C(brightblack)%cd%Creset %C(yellow)%h%C(auto)%d%  %s\"";
+      al = "config --get-regexp '^alias\.'";
+      clr = "git rm --cached $(git ls-files -i -c --exclude-from=.gitignore)";
+    };
+    attributes = [
+      "merge.ours.driver true"
+      "core.quotepath off"
+    ];
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+      core = {
+        editor = "nvim";
+      };
+      pull = {
+        rebase = true;
+      };
+      safe = {
+        directory = "*";
+      };
+    };
+    difftastic.enable = true;
+    ignores = [
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "tmp/"
+      "target/"
+      "build/"
+      "out/"
+      "dist/"
+      "log/"
+      "logs/"
+      "*~"
+      "*.swp"
+      "*.log"
+      "*.bak"
+      "*.pid"
+      ".idea/"
+      ".settings/"
+      ".gradle/"
+      ".env"
+      ".env.*"
+      "node_modules/"
+    ];
+
   };
 }
