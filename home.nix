@@ -7,6 +7,7 @@
     # zsh
     # basic
     coreutils
+    inetutils
     du-dust
     tree
     curl
@@ -16,7 +17,7 @@
     htop
     # shell
     tmux
-    neovim
+    # neovim
     # documentation
     hugo
     asciidoctor-with-extensions
@@ -57,6 +58,19 @@
     })
   ];
 
+  editorconfig.enable = true;
+  editorconfig.settings = {
+    "*" = {
+      charset = "utf-8";
+      end_of_line = "lf";
+      trim_trailing_whitespace = true;
+      insert_final_newline = true;
+      max_line_width = 120;
+      indent_style = "space";
+      indent_size = 2;
+    };
+  };
+
   programs.java = {
     enable = true;
     package = pkgs.temurin-bin-17;
@@ -64,7 +78,6 @@
 
   programs.zsh = {
     enable = true;
-    package = pkgs.zsh;
     # need turn off default prompt
     # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
     initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure";
@@ -120,6 +133,28 @@
         "ohmyzsh/ohmyzsh path:plugins/macos"
       ];
     };
+  };
+
+  programs.neovim = {
+    enable = true;
+    coc.enable = false;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
+    extraConfig = ''
+    set termguicolors
+    set incsearch ignorecase smartcase hlsearch
+    set list listchars=trail:»,tab:»-
+    set wrap breakindent
+    set number
+    set relativenumber
+    '';
+    plugins = with pkgs.vimPlugins; [
+      rainbow
+      indent-blankline-nvim
+    ];
   };
 
   # https://direnv.net/

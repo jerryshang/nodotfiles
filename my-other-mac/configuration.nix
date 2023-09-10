@@ -60,7 +60,6 @@
   # automatically updated every time you rebuild the system configuration.
   environment.systemPackages = [
     # 🤔 https://daiderd.com/nix-darwin/manual/index.html#opt-environment.systemPackages
-    # pkgs.neovim
   ];
 
   # should disable to avoid conflict with zsh func like copypath
