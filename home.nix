@@ -249,6 +249,19 @@
       ".env.*"
       "node_modules/"
     ];
+  };
 
+  programs.ssh = {
+    enable = true;
+    hashKnownHosts = true;
+    matchBlocks = {
+      "rpi.local" = {
+        hostname = "rpi.local";
+        user = "jerry";
+      };
+    };
+    includes = [] ++ lib.optionals pkgs.stdenv.isDarwin [
+      ".colima/ssh_config"
+    ];
   };
 }
