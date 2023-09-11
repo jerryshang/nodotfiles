@@ -99,7 +99,7 @@
       # build and switch
       ns-mac = "darwin-rebuild switch --flake \"$HOME/.config/nix#myOtherMac\"";
       ns-linux = "nix run home-manager -- --flake ~/.config/nix#jerry@server switch";
-      ns-pi = "nix run home-manager -- --flake ~/.config/nix#jerry@pi switch";
+      ns-pi = "nix run home-manager -- --flake ~/.config/nix#jerry@rpi switch";
       how = "echo $(compgen -a) | tr -s '[:blank:]' '\n' | grep -e '^ns-' ";
     };
     shellGlobalAliases = {
