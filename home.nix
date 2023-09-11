@@ -82,10 +82,13 @@
     # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
     initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure";
     initExtraFirst = ''
+      DISABLE_MAGIC_FUNCTIONS="true"
       setopt interactive_comments
       unsetopt nomatch
       autoload -U compinit && compinit
     '';
+    completionInit = "";
+    envExtra = "";
     defaultKeymap = "viins";
     syntaxHighlighting = {
       enable = true;
