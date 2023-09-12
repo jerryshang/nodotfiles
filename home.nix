@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-
+### https://nix-community.github.io/home-manager/options.html
 {
   home.stateVersion = "23.05";
 
@@ -55,6 +55,10 @@
     }
     (lib.mkIf (pkgs.stdenv.isDarwin) {
       DOCKER_HOST = "unix://\${HOME}/.colima/docker.sock";
+      # only on myOtherMac
+      # manually install android studio first
+      ANDROID_HOME = "\${HOME}/Library/Android/sdk";
+      PATH = "\$PATH:\$ANDROID_HOME/tools:\$ANDROID_HOME/tools/bin:\$ANDROID_HOME/platform-tools";
     })
   ];
 
@@ -226,6 +230,10 @@
       };
       safe = {
         directory = "*";
+      };
+      push = {
+        default = "current";
+        autoSetupRemote = "true";
       };
     };
     difftastic.enable = true;
