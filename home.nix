@@ -74,6 +74,9 @@
       indent_style = "space";
       indent_size = 2;
     };
+    "*.{md,adoc}" = {
+      max_line_length = "off";
+    };
   };
 
   programs.java = {
