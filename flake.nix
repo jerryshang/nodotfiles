@@ -50,6 +50,20 @@
     };
 
     homeConfigurations = {
+      "root@wsl" = home-manager.lib.homeManagerConfiguration rec {
+        pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
+        modules = [
+          ./home.nix
+          {
+            home = {
+              username = "root";
+              homeDirectory = "/root";
+              stateVersion = "23.05";
+              enableNixpkgsReleaseCheck = false;
+            };
+          }
+        ];
+      };
       "jerry@server" = home-manager.lib.homeManagerConfiguration rec {
         pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         modules = [

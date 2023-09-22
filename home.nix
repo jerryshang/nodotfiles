@@ -33,7 +33,8 @@
     httpie
     # c and cpp
     cmake
-    boost
+    # conflict with nix?
+    #boost
     # javascript
     nodejs_18
     yarn
