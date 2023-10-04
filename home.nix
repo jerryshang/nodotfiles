@@ -24,6 +24,7 @@
     watchexec
     pandoc
     imagemagick
+    graphviz
     # dev
     docker
     # git
@@ -37,7 +38,9 @@
     #boost
     # javascript
     nodejs_18
-    yarn
+    nodePackages.pnpm
+    nodePackages.yarn
+    python312
     # java
     temurin-bin-17
     gradle
@@ -45,6 +48,7 @@
     maven
   ] ++ lib.optionals stdenv.isDarwin [
     # for macOS only
+    ruby
     cocoapods
     m-cli
     colima
@@ -97,6 +101,15 @@
     '';
     completionInit = "";
     envExtra = "";
+    profileExtra = ''
+      export LANG=en_US.UTF-8
+      export LC_ALL=en_US.UTF-8
+
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+
+      # Added by Toolbox App
+      export PATH="$PATH:/Users/jerry/Library/Application Support/JetBrains/Toolbox/scripts"
+    '';
     defaultKeymap = "viins";
     syntaxHighlighting = {
       enable = true;
@@ -108,6 +121,7 @@
       ns-mac = "darwin-rebuild switch --flake \"$HOME/.config/nix#myOtherMac\"";
       ns-linux = "nix run home-manager -- --flake ~/.config/nix#jerry@server switch";
       ns-pi = "nix run home-manager -- --flake ~/.config/nix#jerry@rpi switch";
+      ns-wsl = "nix run home-manager -- --flake ~/.config/nix#root@wsl switch";
       how = "echo $(compgen -a) | tr -s '[:blank:]' '\n' | grep -e '^ns-' ";
     };
     shellGlobalAliases = {
