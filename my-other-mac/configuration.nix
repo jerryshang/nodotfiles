@@ -85,14 +85,15 @@
     enable = true;
     onActivation.cleanup = "uninstall";
     brews = [
-      "emqx/mqttx/mqttx-cli"
+      # "emqx/mqttx/mqttx-cli"
+      # "python@3.10"
     ];
     taps = [
-      "emqx/mqttx"
+      # "emqx/mqttx"
     ];
     casks = [
       "alfred"
-      "amethyst"
+      # "amethyst"
       "anki"
       "calibre"
       "google-chrome"
@@ -103,6 +104,7 @@
       "squirrel"
       "tor-browser"
       "visual-studio-code"
+      #"anaconda"
     ];
   };
 

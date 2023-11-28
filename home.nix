@@ -15,6 +15,7 @@
     openssl
     rsync
     htop
+    netcat-gnu
     # shell
     tmux
     # neovim
@@ -23,7 +24,8 @@
     asciidoctor-with-extensions
     watchexec
     pandoc
-    imagemagick
+    #imagemagick
+    imagemagickBig
     graphviz
     # dev
     docker
@@ -37,15 +39,21 @@
     # conflict with nix?
     #boost
     # javascript
-    nodejs_18
-    nodePackages.pnpm
-    nodePackages.yarn
-    python312
+    # nodejs_20
+    #nodePackages.pnpm
+    #nodePackages.yarn
+    python310
+    python310Packages.virtualenv
+    python310Packages.pip
+    poetry
+    asdf-vm
     # java
     temurin-bin-17
     gradle
     ## 🤔 deps on pkgs.jdk(now zulu jdk19)
     maven
+    rustup
+    protobuf
   ] ++ lib.optionals stdenv.isDarwin [
     # for macOS only
     ruby
@@ -92,7 +100,7 @@
     enable = true;
     # need turn off default prompt
     # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
-    initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure";
+    initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure && source ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh";
     initExtraFirst = ''
       DISABLE_MAGIC_FUNCTIONS="true"
       setopt interactive_comments
