@@ -1,12 +1,13 @@
 { config, pkgs, lib, ... }:
 ### https://nix-community.github.io/home-manager/options.html
 {
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
     # zsh
     # basic
     coreutils
+    moreutils
     inetutils
     du-dust
     tree
@@ -21,7 +22,7 @@
     # neovim
     # documentation
     hugo
-    asciidoctor-with-extensions
+#    asciidoctor-with-extensions
     watchexec
     pandoc
     #imagemagick
@@ -30,8 +31,8 @@
     # dev
     docker
     # git
-    glab
-    gh
+    # glab
+    # gh
     jq
     httpie
     # c and cpp
@@ -42,10 +43,9 @@
     # nodejs_20
     #nodePackages.pnpm
     #nodePackages.yarn
-    python310
-    python310Packages.virtualenv
-    python310Packages.pip
-    poetry
+    python312
+    python312Packages.virtualenv
+    python312Packages.pip
     asdf-vm
     # java
     temurin-bin-17
@@ -53,10 +53,10 @@
     ## 🤔 deps on pkgs.jdk(now zulu jdk19)
     maven
     rustup
-    protobuf
+    # protobuf
   ] ++ lib.optionals stdenv.isDarwin [
     # for macOS only
-    ruby
+    ruby_3_2
     cocoapods
     m-cli
     colima
@@ -294,7 +294,11 @@
     matchBlocks = {
       "rpi.local" = {
         hostname = "rpi.local";
-        user = "jerry";
+        user = "pi";
+      };
+      "npi.local" = {
+        hostname = "npi.local";
+        user = "root";
       };
     };
     includes = [] ++ lib.optionals pkgs.stdenv.isDarwin [

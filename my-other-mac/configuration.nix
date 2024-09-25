@@ -8,6 +8,7 @@
 # - users.users
 { pkgs, lib, ... }:
 {
+  system.stateVersion = 5;
   # will apply on nix
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html
   nix.settings = {
@@ -73,8 +74,7 @@
   programs.zsh.enable = true;
 
   # Fonts
-  fonts.fontDir.enable = true;
-  fonts.fonts = [
+  fonts.packages = [
     pkgs.inconsolata-nerdfont
     pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-cjk-serif
@@ -87,6 +87,7 @@
     brews = [
       # "emqx/mqttx/mqttx-cli"
       # "python@3.10"
+      "gnu-sed"
     ];
     taps = [
       # "emqx/mqttx"
@@ -104,6 +105,13 @@
       "squirrel"
       "tor-browser"
       "visual-studio-code"
+      "syncthing"
+      "firefox"
+      "virtualbox@beta"
+      "iina"
+      "android-platform-tools"
+      "keka"
+      #"ffmpeg"
       #"anaconda"
     ];
   };
