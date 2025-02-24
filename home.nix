@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 ### https://nix-community.github.io/home-manager/options.html
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
     # zsh

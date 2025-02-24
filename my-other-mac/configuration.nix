@@ -87,9 +87,22 @@
     brews = [
       # "emqx/mqttx/mqttx-cli"
       # "python@3.10"
+      "coreutils"
       "gnu-sed"
+      "beancount"
+      "ffmpeg"
+      # kotlin native develop, pre-build sqlite
+      "bdw-gc"
+      "m4"
+      "libtool"
+      "pkg-config"
+      "guile"
+      "aarch64-unknown-linux-gnu"
+      "ollama"
+      "supabase"
     ];
     taps = [
+      "messense/macos-cross-toolchains"
       # "emqx/mqttx"
     ];
     casks = [
@@ -107,11 +120,17 @@
       "visual-studio-code"
       "syncthing"
       "firefox"
-      "virtualbox@beta"
+      # "virtualbox@beta"
       "iina"
       "android-platform-tools"
       "keka"
-      #"ffmpeg"
+      "arc"
+      # "maccy"
+      "pearcleaner"
+      "localsend"
+      "nimble-commander"
+      "kap"
+      "utm"
       #"anaconda"
     ];
   };

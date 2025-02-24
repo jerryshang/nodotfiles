@@ -3,7 +3,8 @@
 
   inputs = {
     # Package sets
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
 
     # Environment/system management
@@ -58,7 +59,7 @@
             home = {
               username = "root";
               homeDirectory = "/root";
-              stateVersion = "23.05";
+              stateVersion = "24.05";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -72,7 +73,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "23.05";
+              stateVersion = "24.05";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -86,7 +87,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "23.05";
+              stateVersion = "24.05";
               enableNixpkgsReleaseCheck = false;
             };
           }
