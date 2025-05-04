@@ -21,8 +21,9 @@
     tmux
     # neovim
     # documentation
-    hugo
-#    asciidoctor-with-extensions
+    #hugo
+    asciidoc-full-with-plugins
+    #asciidoctor-with-extensions
     watchexec
     pandoc
     #imagemagick
@@ -43,9 +44,11 @@
     # nodejs_20
     #nodePackages.pnpm
     #nodePackages.yarn
-    python312
-    python312Packages.virtualenv
-    python312Packages.pip
+    #python312
+    #python312Packages.virtualenv
+    #python312Packages.pip
+    # mise
+    uv
     asdf-vm
     # java
     temurin-bin-17
@@ -115,6 +118,7 @@
 
       eval "$(/opt/homebrew/bin/brew shellenv)"
 
+      export PATH="$PATH:$HOME/.local/bin"
       # Added by Toolbox App
       export PATH="$PATH:/Users/jerry/Library/Application Support/JetBrains/Toolbox/scripts"
     '';
