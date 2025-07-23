@@ -8,6 +8,16 @@ rebuild
 darwin-rebuild switch --flake ~/.config/nix#myOtherMac
 ```
 
+## setup on new mac
+
+After cloning this repo:
+
+1. Enable colima autostart (requires manual setup after nix rebuild):
+   ```shell
+   cp ~/.config/nix/my-other-mac/com.github.abiosoft.colima.plist ~/Library/LaunchAgents/
+   launchctl load ~/Library/LaunchAgents/com.github.abiosoft.colima.plist
+   ```
+
 ## on server
 
 add mirrors to `/etc/nix/nix.conf`

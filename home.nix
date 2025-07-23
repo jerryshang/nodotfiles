@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 ### https://nix-community.github.io/home-manager/options.html
 {
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
     # zsh
@@ -49,9 +49,8 @@
     #python312Packages.pip
     # mise
     uv
-    asdf-vm
     # java
-    temurin-bin-17
+    # temurin-bin-17
     gradle
     ## 🤔 deps on pkgs.jdk(now zulu jdk19)
     maven
@@ -103,7 +102,12 @@
     enable = true;
     # need turn off default prompt
     # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
-    initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure && source ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh";
+    # initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure && source ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh";
+    initExtra = ''
+      if command -v mise &> /dev/null; then
+        eval "$(mise activate zsh)"
+      fi
+    '';
     initExtraFirst = ''
       DISABLE_MAGIC_FUNCTIONS="true"
       setopt interactive_comments
@@ -119,6 +123,7 @@
       eval "$(/opt/homebrew/bin/brew shellenv)"
 
       export PATH="$PATH:$HOME/.local/bin"
+      export PATH="$PATH:$HOME/oops"
       # Added by Toolbox App
       export PATH="$PATH:/Users/jerry/Library/Application Support/JetBrains/Toolbox/scripts"
     '';
