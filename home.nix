@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [
     # zsh
-    # basic
+    ### basic
     coreutils
     moreutils
     inetutils
@@ -17,11 +17,11 @@
     rsync
     htop
     netcat-gnu
-    # shell
+    ### shell
     tmux
     # neovim
-    # documentation
-    #hugo
+
+    ### documentation
     asciidoc-full-with-plugins
     #asciidoctor-with-extensions
     watchexec
@@ -29,39 +29,32 @@
     #imagemagick
     imagemagickBig
     graphviz
-    # dev
-    docker
-    # git
-    # glab
-    # gh
+    ### dev tools
     jq
     httpie
-    # c and cpp
+    ### c and cpp
     cmake
-    # conflict with nix?
-    #boost
-    # javascript
-    # nodejs_20
-    #nodePackages.pnpm
-    #nodePackages.yarn
-    #python312
-    #python312Packages.virtualenv
-    #python312Packages.pip
-    # mise
+
+    ### javascript
+
+    ### python
     uv
-    # java
-    # temurin-bin-17
+    ### java
     gradle
-    ## 🤔 deps on pkgs.jdk(now zulu jdk19)
+    # 🤔 deps on pkgs.jdk(now zulu jdk19)
     maven
+
+    ### rust
     rustup
-    # protobuf
   ] ++ lib.optionals stdenv.isDarwin [
     # for macOS only
     ruby_3_2
     cocoapods
     m-cli
-    colima
+    # colima
+  ] ++ lib.optionals stdenv.isLinux [
+    # for linux only
+    docker
   ];
 
   home.sessionVariables = lib.mkMerge [
@@ -69,11 +62,12 @@
       TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = /var/run/docker.sock;
     }
     (lib.mkIf (pkgs.stdenv.isDarwin) {
-      DOCKER_HOST = "unix://\${HOME}/.colima/docker.sock";
       # only on myOtherMac
       # manually install android studio first
       ANDROID_HOME = "\${HOME}/Library/Android/sdk";
       PATH = "\$PATH:\$ANDROID_HOME/tools:\$ANDROID_HOME/tools/bin:\$ANDROID_HOME/platform-tools";
+      # for colima
+      # DOCKER_HOST = "unix://\${HOME}/.colima/docker.sock";
     })
   ];
 

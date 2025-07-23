@@ -107,6 +107,7 @@
       "supabase"
       "mise"
       "cloudflared"
+      # "colima"
     ];
     taps = [
       "messense/macos-cross-toolchains"
@@ -156,6 +157,7 @@
       "clash-verge-rev"
       "obsidian"
       # "ghostty"
+      "orbstack"
     ];
   };
 
