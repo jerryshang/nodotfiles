@@ -138,7 +138,7 @@
       "nimble-commander"
       "kap"
       # "utm"
-      # "warp"
+      "warp"
       # "wireshark"
       "jordanbaird-ice"
       # "msty"
@@ -152,12 +152,14 @@
       "cyberduck"
       "google-drive"
       "raycast"
-      "videofusion"
-      "wechat"
       "clash-verge-rev"
       "obsidian"
       # "ghostty"
       "orbstack"
+      "videofusion"
+      "spotify"
+      "wechat"
+      "tencent-meeting"
     ];
   };
 

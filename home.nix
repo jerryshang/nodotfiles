@@ -117,6 +117,9 @@
       eval "$(/opt/homebrew/bin/brew shellenv)"
 
       export PATH="$PATH:$HOME/.local/bin"
+      # bun global packages
+      export PATH="$PATH:$HOME/.bun/bin"
+      # local tools
       export PATH="$PATH:$HOME/oops"
       # Added by Toolbox App
       export PATH="$PATH:/Users/jerry/Library/Application Support/JetBrains/Toolbox/scripts"
