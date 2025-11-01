@@ -89,12 +89,18 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "uninstall";
+    taps = [
+      "messense/macos-cross-toolchains"
+      # "emqx/mqttx"
+      "tw93/tap"
+    ];
     brews = [
       # "emqx/mqttx/mqttx-cli"
       # "python@3.10"
       "coreutils"
       "gnu-sed"
       "beancount"
+      "aarch64-unknown-linux-gnu"
       "ffmpeg"
       # kotlin native develop, pre-build sqlite
       "bdw-gc"
@@ -102,16 +108,12 @@
       "libtool"
       "pkg-config"
       "guile"
-      "aarch64-unknown-linux-gnu"
       "ollama"
       "supabase"
       "mise"
       "cloudflared"
       # "colima"
-    ];
-    taps = [
-      "messense/macos-cross-toolchains"
-      # "emqx/mqttx"
+      "tw93/tap/mole"
     ];
     casks = [
       # "alfred"
@@ -124,7 +126,7 @@
       "microsoft-remote-desktop"
       "snipaste"
       "squirrel-app"
-      "tor-browser"
+      # "tor-browser"
       "visual-studio-code"
       "syncthing-app"
       #"firefox"
@@ -135,7 +137,7 @@
       # "maccy"
       "pearcleaner"
       "localsend"
-      "nimble-commander"
+      # "nimble-commander"
       "kap"
       # "utm"
       "warp"
@@ -146,20 +148,24 @@
       "soulseek"
       # "genymotion"
       "balenaetcher"
-      #"anaconda"
-      "flutter"
+      # "anaconda"
+      # "flutter"
       "vlc"
-      "cyberduck"
+      # "cyberduck"
       "google-drive"
       "raycast"
       "clash-verge-rev"
-      "obsidian"
+      #"obsidian"
       # "ghostty"
       "orbstack"
       "videofusion"
       "spotify"
-      "wechat"
-      "tencent-meeting"
+      # "wechat"
+      # "tencent-meeting"
+      "rectangle"
+      "rustdesk"
+      "zoom"
+      "sourcetree"
     ];
   };
 

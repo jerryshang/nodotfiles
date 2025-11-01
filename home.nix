@@ -22,8 +22,8 @@
     # neovim
 
     ### documentation
-    asciidoc-full-with-plugins
-    #asciidoctor-with-extensions
+    #asciidoc-full-with-plugins
+    asciidoctor-with-extensions
     watchexec
     pandoc
     #imagemagick
