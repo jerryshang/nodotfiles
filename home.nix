@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 ### https://nix-community.github.io/home-manager/options.html
 {
-  home.stateVersion = "25.05";
+  home.stateVersion = lib.mkDefault "25.05";
 
   home.packages = with pkgs; [
     # zsh
@@ -113,9 +113,11 @@
     profileExtra = ''
       export LANG=en_US.UTF-8
       export LC_ALL=en_US.UTF-8
-
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-
+${lib.optionalString pkgs.stdenv.isDarwin ''
+      if [ -x /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+''}
       export PATH="$PATH:$HOME/.local/bin"
       # bun global packages
       export PATH="$PATH:$HOME/.bun/bin"

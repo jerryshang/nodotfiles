@@ -3,16 +3,15 @@
 
   inputs = {
     # Package sets
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Environment/system management
     darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Other sources
     flake-utils.url = "github:numtide/flake-utils";
@@ -21,8 +20,6 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager, flake-utils, ... }@inputs:
   let
     inherit (darwin.lib) darwinSystem;
-    inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
-
     # Configuration for `nixpkgs`
     nixpkgsConfig = {
       config = {
@@ -59,7 +56,7 @@
             home = {
               username = "root";
               homeDirectory = "/root";
-              stateVersion = "24.05";
+              stateVersion = "25.05";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -73,7 +70,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "24.05";
+              stateVersion = "25.05";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -87,7 +84,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "24.05";
+              stateVersion = "25.05";
               enableNixpkgsReleaseCheck = false;
             };
           }

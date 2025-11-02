@@ -6,7 +6,7 @@
 # - fonts
 # - system
 # - users.users
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 {
   system.stateVersion = 5;
 
@@ -14,7 +14,7 @@
 
   # will apply on nix
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html
-  nix.settings = {
+  nix.settings = lib.optionalAttrs config.nix.enable {
     experimental-features = [
       "nix-command"
       "flakes"
@@ -24,8 +24,13 @@
     # A substituter is an additional store from which Nix can obtain store objects instead of building them
     # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-substituters
     substituters = [
+      "https://cache.nixos.org/"
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    ];
+
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
 
     # `admin` is macOS's `wheel` group
@@ -41,7 +46,7 @@
 
     # on mac chip system, build intel chip too
     # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-extra-platforms
-    extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [
+    extra-platforms = lib.optionals (pkgs.system == "aarch64-darwin") [
       "x86_64-darwin"
       "aarch64-darwin"
     ];
@@ -92,6 +97,7 @@
     taps = [
       "messense/macos-cross-toolchains"
       # "emqx/mqttx"
+      "supabase/tap"
       "tw93/tap"
     ];
     brews = [
