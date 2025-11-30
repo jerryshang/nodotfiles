@@ -4,7 +4,6 @@
   home.stateVersion = lib.mkDefault "25.05";
 
   home.packages = with pkgs; [
-    # zsh
     ### basic
     coreutils
     moreutils
@@ -59,7 +58,7 @@
 
   home.sessionVariables = lib.mkMerge [
     {
-      TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = /var/run/docker.sock;
+      TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
     }
     (lib.mkIf (pkgs.stdenv.isDarwin) {
       # only on myOtherMac
@@ -92,92 +91,7 @@
     package = pkgs.temurin-bin-17;
   };
 
-  programs.zsh = {
-    enable = true;
-    # need turn off default prompt
-    # https://github.com/NixOS/nixpkgs/blob/4ecab3273592f27479a583fb6d975d4aba3486fe/nixos/modules/programs/zsh/zsh.nix#L89
-    # initExtra = "autoload -Uz promptinit && promptinit && prompt off && prompt pure && source ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh";
-    initExtra = ''
-      if command -v mise &> /dev/null; then
-        eval "$(mise activate zsh)"
-      fi
-    '';
-    initExtraFirst = ''
-      DISABLE_MAGIC_FUNCTIONS="true"
-      setopt interactive_comments
-      unsetopt nomatch
-      autoload -U compinit && compinit
-    '';
-    completionInit = "";
-    envExtra = "";
-    profileExtra = ''
-      export LANG=en_US.UTF-8
-      export LC_ALL=en_US.UTF-8
-${lib.optionalString pkgs.stdenv.isDarwin ''
-      if [ -x /opt/homebrew/bin/brew ]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      fi
-''}
-      export PATH="$PATH:$HOME/.local/bin"
-      # bun global packages
-      export PATH="$PATH:$HOME/.bun/bin"
-      # local tools
-      export PATH="$PATH:$HOME/oops"
-      # Added by Toolbox App
-      export PATH="$PATH:/Users/jerry/Library/Application Support/JetBrains/Toolbox/scripts"
-    '';
-    defaultKeymap = "viins";
-    syntaxHighlighting = {
-      enable = true;
-    };
-    # can placed in home.shellAliases
-    shellAliases = {
-      ll = "ls -lah";
-      # build and switch
-      ns-mac = "darwin-rebuild switch --flake \"$HOME/.config/nix#myOtherMac\"";
-      ns-linux = "nix run home-manager -- --flake ~/.config/nix#jerry@server switch";
-      ns-pi = "nix run home-manager -- --flake ~/.config/nix#jerry@rpi switch";
-      ns-wsl = "nix run home-manager -- --flake ~/.config/nix#root@wsl switch";
-      how = "echo $(compgen -a) | tr -s '[:blank:]' '\n' | grep -e '^ns-' ";
-    };
-    shellGlobalAliases = {
-      UUID = "$(uuidgen | tr -d \\n)";
-    };
-    history = {
-      size = 10000;
-      ignorePatterns = [
-        "rm *"
-        "kill *"
-        "pkill *"
-      ];
-    };
-
-    autocd = true;
-
-    # https://getantidote.github.io/
-    # https://github.com/nix-community/home-manager/blob/master/modules/programs/antidote.nix
-    antidote = {
-      enable = true;
-      useFriendlyNames = true;
-      plugins = [
-        "rupa/z"
-        "zsh-users/zsh-completions"
-        "zsh-users/zsh-autosuggestions"
-        "sindresorhus/pure     kind:fpath"
-        # deps by copypath/copyfile/copybuffer/...
-        "ohmyzsh/ohmyzsh path:lib"
-        # ESC, ESC
-        "ohmyzsh/ohmyzsh path:plugins/sudo"
-        "ohmyzsh/ohmyzsh path:plugins/copypath"
-        "ohmyzsh/ohmyzsh path:plugins/copyfile"
-        # CTRL-O
-        "ohmyzsh/ohmyzsh path:plugins/copybuffer"
-      ] ++ lib.optionals pkgs.stdenv.isDarwin [
-        # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
-        "ohmyzsh/ohmyzsh path:plugins/macos"
-      ];
-    };
-  };
+  # NOTE: zsh config moved to chezmoi, see ~/.local/share/chezmoi/dot_zshrc
 
   programs.neovim = {
     enable = true;
@@ -225,9 +139,10 @@ ${lib.optionalString pkgs.stdenv.isDarwin ''
 
   # https://direnv.net/
   # https://github.com/nix-community/nix-direnv
+  # NOTE: zsh hook is in chezmoi zshrc
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;
     nix-direnv.enable = true;
   };
 

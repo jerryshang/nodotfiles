@@ -101,6 +101,8 @@
       "tw93/tap"
     ];
     brews = [
+      # zsh plugin manager
+      "antidote"
       # "emqx/mqttx/mqttx-cli"
       # "python@3.10"
       "coreutils"
@@ -120,6 +122,7 @@
       "cloudflared"
       # "colima"
       "tw93/tap/mole"
+      "bitwarden-cli"
     ];
     casks = [
       # "alfred"
@@ -172,6 +175,8 @@
       "rustdesk"
       "zoom"
       "sourcetree"
+      # "anytype"
+      "bitwarden"
     ];
   };
 
