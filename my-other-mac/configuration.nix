@@ -178,6 +178,7 @@
       "sourcetree"
       # "anytype"
       "bitwarden"
+      "zed"
     ];
   };
 
