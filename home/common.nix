@@ -8,7 +8,7 @@
     coreutils
     moreutils
     inetutils
-    du-dust
+    dust
     tree
     curl
     wget
