@@ -47,7 +47,7 @@
     rustup
   ] ++ lib.optionals stdenv.isDarwin [
     # for macOS only
-    ruby_3_2
+    ruby
     cocoapods
     m-cli
   ] ++ lib.optionals stdenv.isLinux [
