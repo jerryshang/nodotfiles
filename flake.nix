@@ -7,17 +7,14 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Environment/system management
-    darwin.url = "github:LnL7/nix-darwin";
+    darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Other sources
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager, ... }@inputs:
   let
     inherit (darwin.lib) darwinSystem;
     # Configuration for `nixpkgs`
@@ -41,7 +38,12 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jerry = import ./home.nix;
+            home-manager.users.jerry = {
+              imports = [
+                ./home/common.nix
+                ./home/darwin.nix
+              ];
+            };
           }
         ];
       };
@@ -51,7 +53,8 @@
       "root@wsl" = home-manager.lib.homeManagerConfiguration rec {
         pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         modules = [
-          ./home.nix
+          ./home/common.nix
+          ./home/linux.nix
           {
             home = {
               username = "root";
@@ -65,7 +68,8 @@
       "jerry@server" = home-manager.lib.homeManagerConfiguration rec {
         pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
         modules = [
-          ./home.nix
+          ./home/common.nix
+          ./home/linux.nix
           {
             home = {
               username = "jerry";
@@ -79,7 +83,8 @@
       "jerry@rpi" = home-manager.lib.homeManagerConfiguration rec {
         pkgs = nixpkgs-unstable.legacyPackages.aarch64-linux;
         modules = [
-          ./home.nix
+          ./home/common.nix
+          ./home/linux.nix
           {
             home = {
               username = "jerry";

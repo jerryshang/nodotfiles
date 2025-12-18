@@ -9,6 +9,7 @@
 { config, pkgs, lib, ... }:
 {
   system.stateVersion = 5;
+  system.primaryUser = "jerry";
 
   nix.enable = false;
 
