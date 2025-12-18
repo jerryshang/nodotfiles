@@ -3,14 +3,14 @@
 
   inputs = {
     # Package sets
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Environment/system management
-    darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -59,7 +59,7 @@
             home = {
               username = "root";
               homeDirectory = "/root";
-              stateVersion = "25.05";
+              stateVersion = "25.11";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -74,7 +74,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "25.05";
+              stateVersion = "25.11";
               enableNixpkgsReleaseCheck = false;
             };
           }
@@ -89,7 +89,7 @@
             home = {
               username = "jerry";
               homeDirectory = "/home/jerry";
-              stateVersion = "25.05";
+              stateVersion = "25.11";
               enableNixpkgsReleaseCheck = false;
             };
           }
