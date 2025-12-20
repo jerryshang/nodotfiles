@@ -166,9 +166,8 @@
       "raycast"
       "clash-verge-rev"
       #"obsidian"
-      # "ghostty"
       "orbstack"
-      "videofusion"
+      # "videofusion"
       "spotify"
       # "wechat"
       # "tencent-meeting"
@@ -179,6 +178,8 @@
       # "anytype"
       "bitwarden"
       "zed"
+      "android-studio"
+      "antigravity"
     ];
   };
 
