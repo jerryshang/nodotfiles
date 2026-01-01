@@ -125,6 +125,7 @@
       "tw93/tap/mole"
       "bitwarden-cli"
       "duti"
+      "chezmoi"
     ];
     casks = [
       # "alfred"
@@ -181,7 +182,6 @@
       "zed"
       "android-studio"
       "antigravity"
-      "chezmoi"
     ];
   };
 
