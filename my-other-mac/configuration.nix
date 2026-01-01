@@ -168,7 +168,7 @@
       #"obsidian"
       "orbstack"
       # "videofusion"
-      "spotify"
+      # "spotify"
       # "wechat"
       # "tencent-meeting"
       "rectangle"
@@ -180,6 +180,8 @@
       "zed"
       "android-studio"
       "antigravity"
+      "chezmoi"
+      "duti"
     ];
   };
 
