@@ -124,6 +124,7 @@
       # "colima"
       "tw93/tap/mole"
       "bitwarden-cli"
+      "duti"
     ];
     casks = [
       # "alfred"
@@ -181,7 +182,6 @@
       "android-studio"
       "antigravity"
       "chezmoi"
-      "duti"
     ];
   };
 
