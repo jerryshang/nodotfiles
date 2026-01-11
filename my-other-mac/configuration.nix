@@ -100,6 +100,7 @@
       # "emqx/mqttx"
       "supabase/tap"
       "tw93/tap"
+      "hashicorp/tap"
     ];
     brews = [
       # zsh plugin manager
@@ -121,15 +122,14 @@
       "supabase"
       "mise"
       "cloudflared"
-      # "colima"
       "tw93/tap/mole"
       "bitwarden-cli"
       "duti"
       "chezmoi"
+      "kind"
+      "terraform"
     ];
     casks = [
-      # "alfred"
-      # "amethyst"
       "anki"
       "calibre"
       "google-chrome"
@@ -156,18 +156,15 @@
       # "wireshark"
       "jordanbaird-ice"
       # "msty"
-      # "cherry-studio"
       "soulseek"
       # "genymotion"
       "balenaetcher"
-      # "anaconda"
       # "flutter"
       "vlc"
-      # "cyberduck"
       "google-drive"
       "raycast"
       "clash-verge-rev"
-      #"obsidian"
+      "obsidian"
       "orbstack"
       # "videofusion"
       # "spotify"
@@ -177,11 +174,11 @@
       "rustdesk"
       "zoom"
       "sourcetree"
-      # "anytype"
       "bitwarden"
       "zed"
       "android-studio"
       "antigravity"
+      "headlamp"
     ];
   };
 
