@@ -128,6 +128,7 @@
       "chezmoi"
       "kind"
       "terraform"
+      "gnupg"
     ];
     casks = [
       "anki"
@@ -179,6 +180,7 @@
       "android-studio"
       "antigravity"
       "headlamp"
+      "claude-code"
     ];
   };
 
