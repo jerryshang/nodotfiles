@@ -146,7 +146,7 @@
       # "iina"
       "android-platform-tools"
       "keka"
-      "arc"
+      # "arc"
       # "maccy"
       "pearcleaner"
       "localsend"
