@@ -181,6 +181,8 @@
       "antigravity"
       "headlamp"
       "claude-code"
+      "caffeine"
+      "emacs-app"
     ];
   };
 
