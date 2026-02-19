@@ -130,6 +130,7 @@
       "terraform"
       "gnupg"
       "iproute2mac"
+      "tailscale"
     ];
     casks = [
       "anki"
