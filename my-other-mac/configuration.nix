@@ -182,9 +182,9 @@
       "android-studio"
       "antigravity"
       "headlamp"
-      "claude-code"
+      # "claude-code"
       "caffeine"
-      "emacs-app"
+      # "emacs-app"
     ];
   };
 
