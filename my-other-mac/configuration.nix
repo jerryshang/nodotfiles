@@ -191,7 +191,7 @@
   # macOS system tweaking
   # Keyboard
   system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToEscape = true;
+  system.keyboard.remapCapsLockToEscape = false;
 
   # only specify home directory
   # will automatically create user? 🤔
